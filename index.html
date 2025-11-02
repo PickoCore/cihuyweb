@@ -1,650 +1,338 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>CIHUY - Tempat Para Pejuang</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
+        /* ---------- Reset & Base ---------- */
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        html,body { height:100%; }
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
+                Ubuntu, Cantarell, sans-serif;
             background: #0a0e0f;
             color: #fff;
             overflow-x: hidden;
+            -webkit-font-smoothing:antialiased;
+            -moz-osx-font-smoothing:grayscale;
         }
 
-        /* Navigation */
+        /* ---------- NAV ---------- */
         nav {
             position: fixed;
             top: 0;
             width: 100%;
-            background: rgba(10, 14, 15, 0.8);
+            background: rgba(10,14,15,0.8);
             backdrop-filter: blur(20px);
-            z-index: 1000;
+            z-index: 999;
             padding: 20px 0;
-            transition: all 0.3s ease;
+            transition: all .3s ease;
         }
-
-        nav.scrolled {
-            padding: 15px 0;
-            background: rgba(10, 14, 15, 0.95);
-        }
-
+        nav.scrolled { padding: 12px 0; background: rgba(10,14,15,0.95); }
         .nav-content {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 0 40px;
+            max-width: 1200px; margin: 0 auto; padding: 0 24px;
+            display:flex; align-items:center; justify-content:space-between;
         }
-
         .logo {
-            font-size: 28px;
-            font-weight: 700;
-            background: linear-gradient(135deg, #2ecc71, #27ae60);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            letter-spacing: 2px;
+            font-size: 28px; font-weight: 800;
+            background: linear-gradient(135deg,#2ecc71,#27ae60);
+            -webkit-background-clip:text; -webkit-text-fill-color:transparent;
+            letter-spacing:1px;
         }
-
-        .nav-links {
-            display: flex;
-            gap: 40px;
-            list-style: none;
-        }
-
+        .nav-links { display:flex; gap:28px; list-style:none; align-items:center; }
         .nav-links a {
-            color: #fff;
-            text-decoration: none;
-            font-size: 14px;
-            font-weight: 500;
-            opacity: 0.8;
-            transition: opacity 0.3s;
+            color:#fff; text-decoration:none; font-weight:600; opacity:.85; font-size:14px;
+            transition:opacity .15s;
         }
+        .nav-links a:hover { opacity:1; }
 
-        .nav-links a:hover {
-            opacity: 1;
-        }
-
-        /* Hero Section */
+        /* ---------- HERO ---------- */
         .hero {
-            height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-            overflow: hidden;
-            background: radial-gradient(circle at 50% 50%, #1a3a2e 0%, #0a0e0f 70%);
+            height:100vh; min-height:680px;
+            display:flex; align-items:center; justify-content:center;
+            position:relative; overflow:hidden;
+            background: radial-gradient(circle at 50% 40%, #153425 0%, #0a0e0f 72%);
+            padding-top:80px;
         }
-
         .hero-bg {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: 
-                repeating-linear-gradient(90deg, transparent, transparent 50px, rgba(46, 204, 113, 0.03) 50px, rgba(46, 204, 113, 0.03) 51px),
-                repeating-linear-gradient(0deg, transparent, transparent 50px, rgba(46, 204, 113, 0.03) 50px, rgba(46, 204, 113, 0.03) 51px);
-            animation: grid-move 20s linear infinite;
+            position:absolute; inset:0;
+            background:
+                repeating-linear-gradient(90deg, transparent, transparent 50px, rgba(46,204,113,0.03) 50px, rgba(46,204,113,0.03) 51px),
+                repeating-linear-gradient(0deg, transparent, transparent 50px, rgba(46,204,113,0.03) 50px, rgba(46,204,113,0.03) 51px);
+            animation:gridMove 22s linear infinite;
+            opacity:.65;
         }
+        @keyframes gridMove { 0%{transform:translate(0,0)} 100%{transform:translate(50px,50px)} }
 
-        @keyframes grid-move {
-            0% { transform: translate(0, 0); }
-            100% { transform: translate(50px, 50px); }
-        }
-
-        .hero-content {
-            text-align: center;
-            z-index: 1;
-            max-width: 900px;
-            padding: 0 40px;
-        }
-
+        .hero-content { z-index:2; text-align:center; max-width:960px; padding:0 20px; }
         .hero-badge {
-            display: inline-block;
-            padding: 8px 20px;
-            background: rgba(46, 204, 113, 0.1);
-            border: 1px solid rgba(46, 204, 113, 0.3);
-            border-radius: 20px;
-            font-size: 12px;
-            font-weight: 600;
-            color: #2ecc71;
-            margin-bottom: 30px;
-            letter-spacing: 1px;
-            animation: float 3s ease-in-out infinite;
+            display:inline-block; padding:8px 20px; border-radius:20px;
+            background: rgba(46,204,113,0.08); border:1px solid rgba(46,204,113,0.2);
+            color:#2ecc71; font-weight:700; letter-spacing:.8px; margin-bottom:18px;
         }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-10px); }
+        h1 { font-size:64px; line-height:1.02; font-weight:800; margin-bottom:12px;
+            background: linear-gradient(135deg,#fff,#b6f3c2);
+            -webkit-background-clip:text; -webkit-text-fill-color:transparent;
+            text-transform:uppercase;
         }
-
-        h1 {
-            font-size: 72px;
-            font-weight: 700;
-            margin-bottom: 20px;
-            line-height: 1.1;
-            background: linear-gradient(135deg, #fff 0%, #2ecc71 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            animation: fadeInUp 1s ease;
-        }
-
-        .tagline {
-            font-size: 24px;
-            color: rgba(255, 255, 255, 0.7);
-            margin-bottom: 40px;
-            animation: fadeInUp 1.2s ease;
-        }
-
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .cta-buttons {
-            display: flex;
-            gap: 20px;
-            justify-content: center;
-            margin-bottom: 60px;
-            animation: fadeInUp 1.4s ease;
-        }
-
+        .tagline { font-size:20px; color:rgba(255,255,255,.78); margin-bottom:22px; }
+        .cta-buttons { display:flex; gap:16px; justify-content:center; margin-bottom:22px; flex-wrap:wrap; }
         .btn {
-            padding: 16px 40px;
-            border-radius: 12px;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 16px;
-            transition: all 0.3s ease;
-            display: inline-block;
-            cursor: pointer;
-            border: none;
+            padding:14px 34px; border-radius:12px; border:none; font-weight:700; cursor:pointer;
+            text-decoration:none; display:inline-flex; align-items:center; gap:8px;
         }
-
         .btn-primary {
-            background: linear-gradient(135deg, #2ecc71, #27ae60);
-            color: #fff;
-            box-shadow: 0 10px 30px rgba(46, 204, 113, 0.3);
+            background:linear-gradient(135deg,#2ecc71,#27ae60); color:#06100a;
+            box-shadow:0 10px 30px rgba(46,204,113,.18);
         }
-
-        .btn-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 15px 40px rgba(46, 204, 113, 0.4);
-        }
-
-        .btn-secondary {
-            background: rgba(255, 255, 255, 0.1);
-            color: #fff;
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-        }
-
-        .btn-secondary:hover {
-            background: rgba(255, 255, 255, 0.15);
-            transform: translateY(-2px);
-        }
+        .btn-secondary { background:rgba(255,255,255,.06); color:#fff; border:1px solid rgba(255,255,255,.06); }
 
         .server-ip {
-            display: inline-flex;
-            align-items: center;
-            gap: 15px;
-            padding: 20px 40px;
-            background: rgba(46, 204, 113, 0.1);
-            border: 2px solid rgba(46, 204, 113, 0.3);
-            border-radius: 16px;
-            font-size: 20px;
-            font-weight: 600;
-            color: #2ecc71;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            animation: fadeInUp 1.6s ease;
+            display:inline-flex; gap:10px; align-items:center; padding:12px 20px; margin-top:10px;
+            background: rgba(46,204,113,0.08); border:2px solid rgba(46,204,113,0.15); border-radius:14px;
+            font-weight:700; cursor:pointer; transition:transform .18s;
         }
+        .server-ip:hover { transform:scale(1.03); }
 
-        .server-ip:hover {
-            background: rgba(46, 204, 113, 0.15);
-            transform: scale(1.05);
+        /* hero status small */
+        .hero-status {
+            margin-top:16px; display:flex; gap:14px; justify-content:center; align-items:flex-start; flex-direction:column;
         }
+        .hero-status .status-line { font-size:15px; color:rgba(255,255,255,.9); }
+        .hero-status .motd { font-size:14px; color:rgba(255,255,255,.7); margin-top:4px; max-width:760px; white-space:pre-wrap; }
 
-        /* Stats Section */
-        .stats {
-            padding: 100px 40px;
-            background: #0f1415;
+        /* ---------- STATS ---------- */
+        .stats { padding:84px 18px; background:#0f1415; }
+        .stats-container { max-width:1200px; margin:0 auto; display:grid; gap:32px;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
         }
-
-        .stats-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 40px;
-        }
-
         .stat-card {
-            text-align: center;
-            padding: 40px;
-            background: rgba(46, 204, 113, 0.05);
-            border: 1px solid rgba(46, 204, 113, 0.1);
-            border-radius: 20px;
-            transition: all 0.3s ease;
+            position:relative;
+            padding:26px; border-radius:18px;
+            background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+            border:1px solid rgba(255,255,255,0.04); overflow:hidden;
+            transition:transform .25s, box-shadow .25s, border-color .25s;
         }
+        .stat-card:hover { transform:translateY(-6px); }
+        .stat-number { font-size:38px; font-weight:800; color:#2ecc71; margin-bottom:6px; }
+        .stat-label { font-size:14px; color:rgba(255,255,255,.7); font-weight:700; }
+        .stat-desc { font-size:13px; color:rgba(255,255,255,.6); margin-top:6px; }
 
-        .stat-card:hover {
-            transform: translateY(-10px);
-            background: rgba(46, 204, 113, 0.08);
-            border-color: rgba(46, 204, 113, 0.3);
-        }
+        /* online/offline styles */
+        .status-pulse { position:absolute; inset:-6px; border-radius:20px; z-index:0; filter:blur(18px); opacity:0; transition:opacity .2s; pointer-events:none; }
+        .stat-card.online { border-color: rgba(46,204,113,.25); box-shadow:0 10px 40px rgba(46,204,113,.06); }
+        .stat-card.online .status-pulse { background: rgba(46,204,113,.2); opacity:1; animation:glowPulse 2.2s infinite; }
+        .stat-card.offline { border-color: rgba(231,76,60,.22); box-shadow:0 10px 40px rgba(231,76,60,.05); }
+        .stat-card.offline .status-pulse { background: rgba(231,76,60,.16); opacity:1; animation:glowPulse 2.2s infinite; }
+        @keyframes glowPulse { 0%{transform:scale(.98);opacity:.9}50%{transform:scale(1.03);opacity:.55}100%{transform:scale(.98);opacity:.9} }
 
-        .stat-number {
-            font-size: 48px;
-            font-weight: 700;
-            color: #2ecc71;
-            margin-bottom: 10px;
-        }
-
-        .stat-label {
-            font-size: 16px;
-            color: rgba(255, 255, 255, 0.6);
-            font-weight: 500;
-        }
-
-        /* Features Section */
-        .features {
-            padding: 100px 40px;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .section-header {
-            text-align: center;
-            margin-bottom: 80px;
-        }
-
-        .section-title {
-            font-size: 48px;
-            font-weight: 700;
-            margin-bottom: 20px;
-        }
-
-        .section-subtitle {
-            font-size: 20px;
-            color: rgba(255, 255, 255, 0.6);
-        }
-
+        /* ---------- FEATURES ---------- */
+        .features { padding:84px 18px; }
+        .section-header { max-width:980px; margin:0 auto 28px; text-align:center; }
+        .section-title { font-size:38px; font-weight:800; margin-bottom:8px; color:#fff; }
+        .section-subtitle { color:rgba(255,255,255,.7); font-size:15px; }
         .features-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
+            max-width:1200px; margin:28px auto 0; display:grid; gap:20px;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
         }
+        .feature-card { padding:20px; border-radius:14px; background:rgba(255,255,255,0.02); border:1px solid rgba(255,255,255,0.04); transition:transform .18s; }
+        .feature-card:hover { transform:translateY(-6px); border-color:rgba(46,204,113,0.12); }
+        .feature-icon { width:56px;height:56px;border-radius:12px; display:flex;align-items:center;justify-content:center;margin-bottom:12px; font-size:22px; background:linear-gradient(135deg,#2ecc71,#27ae60); color:#06100a; }
+        .feature-title { font-weight:800; margin-bottom:8px; }
+        .feature-desc { color:rgba(255,255,255,.72); font-size:14px; line-height:1.45; }
 
-        .feature-card {
-            padding: 40px;
-            background: rgba(255, 255, 255, 0.02);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 20px;
-            transition: all 0.3s ease;
-        }
+        /* ---------- RANKS ---------- */
+        .ranks { padding:84px 18px; background:#0f1415; }
+        .ranks-container { max-width:1400px; margin:0 auto; }
+        .ranks-grid { display:grid; gap:18px; grid-template-columns: repeat(auto-fit, minmax(260px,1fr)); margin-top:20px; }
+        .rank-card { background:rgba(255,255,255,0.02); padding:20px; border-radius:14px; border:1px solid rgba(255,255,255,0.04); position:relative; overflow:hidden; transition:transform .18s; }
+        .rank-card:hover { transform:translateY(-6px); border-color:rgba(46,204,113,.12); }
+        .rank-header { display:flex; justify-content:space-between; align-items:center; margin-bottom:12px; }
+        .rank-name { font-weight:800; color:#2ecc71; }
+        .rank-price { font-weight:700; color:rgba(255,255,255,.9); }
+        .rank-perks { list-style:none; margin-top:8px; color:rgba(255,255,255,.78); }
+        .rank-perks li { padding:8px 0; display:flex; gap:8px; align-items:center; }
+        .rank-perks li::before { content:'✓'; color:#2ecc71; font-weight:900; margin-right:8px; }
 
-        .feature-card:hover {
-            background: rgba(46, 204, 113, 0.05);
-            border-color: rgba(46, 204, 113, 0.3);
-            transform: translateY(-5px);
-        }
+        /* highlight special */
+        .rank-special { border:2px solid #2ecc71; background:linear-gradient(180deg, rgba(46,204,113,0.03), rgba(255,255,255,0.01)); }
 
-        .feature-icon {
-            width: 60px;
-            height: 60px;
-            background: linear-gradient(135deg, #2ecc71, #27ae60);
-            border-radius: 15px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 28px;
-            margin-bottom: 20px;
-        }
+        /* ---------- COMMUNITY ---------- */
+        .community { padding:84px 18px; }
+        .community-grid { max-width:1200px; margin:0 auto; display:grid; grid-template-columns: repeat(auto-fit, minmax(260px,1fr)); gap:18px; }
+        .community-card { padding:20px; border-radius:14px; background:rgba(255,255,255,0.02); border:1px solid rgba(255,255,255,0.04); }
+        .community-card a { display:inline-block; margin-top:12px; padding:10px 14px; border-radius:12px; text-decoration:none; font-weight:800; }
 
-        .feature-title {
-            font-size: 22px;
-            font-weight: 600;
-            margin-bottom: 10px;
-        }
+        /* ---------- FOOTER ---------- */
+        footer { padding:48px 18px; background:#080a0b; border-top:1px solid rgba(255,255,255,0.03); margin-top:28px; }
+        .footer-grid { max-width:1200px; margin:0 auto; display:grid; gap:18px; grid-template-columns: repeat(auto-fit, minmax(220px,1fr)); }
+        .footer-section h3 { color:#2ecc71; margin-bottom:8px; }
+        .footer-section p, .footer-section a { color:rgba(255,255,255,.66); font-size:14px; margin-bottom:8px; text-decoration:none; display:block; }
 
-        .feature-desc {
-            color: rgba(255, 255, 255, 0.6);
-            line-height: 1.6;
-        }
+        .copyright { text-align:center; color:rgba(255,255,255,.4); margin-top:20px; font-size:13px; }
 
-        /* Ranks Section */
-        .ranks {
-            padding: 100px 40px;
-            background: #0f1415;
+        /* ---------- Copy notification ---------- */
+        .copy-notif {
+            position:fixed; right:24px; top:92px; background:#2ecc71; color:#06100a; padding:12px 18px; border-radius:10px; font-weight:800;
+            transform:translateY(-8px); opacity:0; pointer-events:none; transition:opacity .18s, transform .18s;
         }
-
-        .ranks-container {
-            max-width: 1400px;
-            margin: 0 auto;
-        }
-
-        .ranks-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 25px;
-            margin-top: 60px;
-        }
-
-        .rank-card {
-            background: rgba(255, 255, 255, 0.02);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 20px;
-            padding: 35px;
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .rank-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 4px;
-            background: linear-gradient(90deg, #2ecc71, #27ae60);
-            transform: scaleX(0);
-            transition: transform 0.4s ease;
-        }
-
-        .rank-card:hover::before {
-            transform: scaleX(1);
-        }
-
-        .rank-card:hover {
-            transform: translateY(-8px);
-            background: rgba(46, 204, 113, 0.05);
-            border-color: rgba(46, 204, 113, 0.3);
-            box-shadow: 0 20px 40px rgba(46, 204, 113, 0.1);
-        }
-
-        .rank-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 20px;
-            padding-bottom: 20px;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .rank-name {
-            font-size: 24px;
-            font-weight: 700;
-            color: #2ecc71;
-        }
-
-        .rank-price {
-            font-size: 18px;
-            font-weight: 600;
-            color: rgba(255, 255, 255, 0.8);
-        }
-
-        .rank-perks {
-            list-style: none;
-        }
-
-        .rank-perks li {
-            padding: 10px 0;
-            color: rgba(255, 255, 255, 0.7);
-            font-size: 14px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .rank-perks li::before {
-            content: '✓';
-            color: #2ecc71;
-            font-weight: bold;
-            font-size: 16px;
-        }
-
-        .rank-special {
-            border: 2px solid #2ecc71;
-            background: rgba(46, 204, 113, 0.08);
-        }
-
-        /* Footer */
-        footer {
-            padding: 60px 40px 30px;
-            background: #0a0e0f;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .footer-content {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 40px;
-            margin-bottom: 40px;
-        }
-
-        .footer-section h3 {
-            font-size: 18px;
-            margin-bottom: 20px;
-            color: #2ecc71;
-        }
-
-        .footer-section p, .footer-section a {
-            color: rgba(255, 255, 255, 0.6);
-            text-decoration: none;
-            display: block;
-            margin-bottom: 10px;
-            transition: color 0.3s;
-        }
-
-        .footer-section a:hover {
-            color: #2ecc71;
-        }
-
-        .social-links {
-            display: flex;
-            gap: 15px;
-            margin-top: 20px;
-        }
-
-        .social-btn {
-            width: 40px;
-            height: 40px;
-            background: rgba(46, 204, 113, 0.1);
-            border-radius: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #2ecc71;
-            text-decoration: none;
-            transition: all 0.3s;
-        }
-
-        .social-btn:hover {
-            background: #2ecc71;
-            color: #0a0e0f;
-            transform: translateY(-3px);
-        }
-
-        .copyright {
-            text-align: center;
-            padding-top: 30px;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            color: rgba(255, 255, 255, 0.4);
-            font-size: 14px;
-        }
+        .copy-notif.show { opacity:1; transform:translateY(0); pointer-events:auto; }
 
         /* Responsive */
-        @media (max-width: 768px) {
-            h1 {
-                font-size: 48px;
-            }
-
-            .tagline {
-                font-size: 18px;
-            }
-
-            .cta-buttons {
-                flex-direction: column;
-                align-items: center;
-            }
-
-            .nav-links {
-                display: none;
-            }
-
-            .ranks-grid {
-                grid-template-columns: 1fr;
-            }
+        @media (max-width:920px){
+            h1 { font-size:44px; }
+            .hero { min-height:720px; padding-top:80px; }
+            .cta-buttons { gap:10px; }
         }
-
-        /* Copy notification */
-        .copy-notification {
-            position: fixed;
-            top: 100px;
-            right: 40px;
-            background: #2ecc71;
-            color: #fff;
-            padding: 15px 25px;
-            border-radius: 10px;
-            font-weight: 600;
-            opacity: 0;
-            transform: translateY(-20px);
-            transition: all 0.3s ease;
-            z-index: 1001;
-            pointer-events: none;
-        }
-
-        .copy-notification.show {
-            opacity: 1;
-            transform: translateY(0);
+        @media (max-width:600px){
+            .nav-content { padding: 0 12px; }
+            .hero { min-height:680px; padding-top:72px; }
+            h1 { font-size:34px; }
+            .feature-icon { width:48px;height:48px; }
+            .stat-number { font-size:30px; }
         }
     </style>
 </head>
 <body>
-    <!-- Navigation -->
-    <nav id="navbar">
+    <!-- NAV -->
+    <nav id="navbar" aria-label="Main navigation">
         <div class="nav-content">
             <div class="logo">CIHUY SERVER</div>
-            <ul class="nav-links">
-                <li><a href="#home">Home</a></li>
-                <li><a href="#features">Features</a></li>
-                <li><a href="#ranks">Ranks</a></li>
-                <li><a href="#community">Community</a></li>
+            <ul class="nav-links" role="menubar">
+                <li role="none"><a role="menuitem" href="#home">Home</a></li>
+                <li role="none"><a role="menuitem" href="#features">Features</a></li>
+                <li role="none"><a role="menuitem" href="#ranks">Ranks</a></li>
+                <li role="none"><a role="menuitem" href="#community">Community</a></li>
             </ul>
         </div>
     </nav>
 
-    <!-- Copy Notification -->
-    <div class="copy-notification" id="copyNotif">IP Copied! 🎮</div>
+    <!-- Copy notification -->
+    <div id="copyNotif" class="copy-notif" role="status" aria-hidden="true">IP Copied — cihuy.xyz</div>
 
-    <!-- Hero Section -->
-    <section class="hero" id="home">
-        <div class="hero-bg"></div>
-        <div class="hero-content">
+    <!-- HERO -->
+    <section id="home" class="hero" aria-label="Hero">
+        <div class="hero-bg" aria-hidden="true"></div>
+
+        <div class="hero-content" role="main">
             <span class="hero-badge">LEGENDS PVP SERVER</span>
             <h1>CIHUY AJA | LEGENDS PVP</h1>
-            <p class="tagline">Tempat Para Pejuang!</p>
+            <p class="tagline">Tempat Para Pejuang! PvP seru, item unik, dan event rutin.</p>
+
             <div class="cta-buttons">
-                <a href="#ranks" class="btn btn-primary">Lihat Ranks</a>
-                <a href="https://dsc.gg/cihuyaja" target="_blank" class="btn btn-secondary">Join Discord</a>
+                <a class="btn btn-primary" href="#ranks">Lihat Ranks</a>
+                <a class="btn btn-secondary" href="https://dsc.gg/cihuyaja" target="_blank" rel="noopener">Join Discord</a>
             </div>
-            <div class="server-ip" onclick="copyIP()">
-                <span>🎯</span>
-                <span>cihuy.xyz</span>
-                <span>📋</span>
+
+            <div style="display:flex; gap:12px; align-items:center; justify-content:center; margin-top:6px; flex-wrap:wrap;">
+                <div class="server-ip" onclick="copyIP()" title="Klik untuk menyalin IP">
+                    <span>🎯</span>
+                    <span style="font-weight:800;">cihuy.xyz</span>
+                    <span>📋</span>
+                </div>
+            </div>
+
+            <div class="hero-status" aria-live="polite">
+                <div id="statusLabel" class="status-line server-status">Status: Memuat...</div>
+                <div id="motd" class="motd">MOTD: Memuat...</div>
+                <div id="version" class="version">Versi: -</div>
             </div>
         </div>
     </section>
 
-    <!-- Stats Section -->
-    <section class="stats">
+    <!-- STATS -->
+    <section class="stats" aria-label="Server stats">
         <div class="stats-container">
-            <div class="stat-card">
-                <div class="stat-number">100+</div>
+            <div class="stat-card" id="cardStatus">
+                <div class="status-pulse" aria-hidden="true"></div>
+                <div class="stat-number" id="onlinePlayers">--</div>
                 <div class="stat-label">Online Sekarang</div>
+                <div class="stat-desc" id="playersDesc">Memuat...</div>
             </div>
+
             <div class="stat-card">
-                <div class="stat-number">500+</div>
+                <div class="stat-number" id="totalPlayers">500+</div>
                 <div class="stat-label">Total Players</div>
+                <div class="stat-desc">Pemain yang terdaftar di server</div>
             </div>
+
             <div class="stat-card">
-                <div class="stat-number">30+</div>
+                <div class="stat-number" id="avgPlayers">--</div>
                 <div class="stat-label">Rata-rata Online</div>
+                <div class="stat-desc">Perkiraan rata-rata pemain aktif</div>
             </div>
+
             <div class="stat-card">
-                <div class="stat-number">300+</div>
+                <div class="stat-number" id="discordCount">300+</div>
                 <div class="stat-label">Discord Members</div>
+                <div class="stat-desc">Komunitas aktif di Discord</div>
             </div>
         </div>
     </section>
 
-    <!-- Features Section -->
-    <section class="features" id="features">
+    <!-- FEATURES -->
+    <section id="features" class="features" aria-label="Features">
         <div class="section-header">
             <h2 class="section-title">Kenapa Pilih CIHUY?</h2>
             <p class="section-subtitle">Server PvP terbaik dengan sistem yang adil dan menyenangkan</p>
         </div>
-        <div class="features-grid">
-            <div class="feature-card">
+
+        <div class="features-grid" role="list">
+            <div class="feature-card" role="listitem">
                 <div class="feature-icon">⚔️</div>
-                <h3 class="feature-title">Multiple Game Modes</h3>
-                <p class="feature-desc">1v1, FFA, dan Kit PvP dengan berbagai pilihan gameplay yang seru</p>
+                <div class="feature-title">Multiple Game Modes</div>
+                <div class="feature-desc">1v1, FFA, Kit PvP dan sekarang <strong>Dungeon Multiplayer</strong> — co-op & raid seru!</div>
             </div>
-            <div class="feature-card">
+
+            <div class="feature-card" role="listitem">
                 <div class="feature-icon">🏆</div>
-                <h3 class="feature-title">Ranking System</h3>
-                <p class="feature-desc">Leaderboard kills & deaths untuk menunjukkan skill PvP kamu</p>
+                <div class="feature-title">Ranking System</div>
+                <div class="feature-desc">Leaderboard kills & deaths untuk menunjukkan skill PvP kamu.</div>
             </div>
-            <div class="feature-card">
+
+            <div class="feature-card" role="listitem">
                 <div class="feature-icon">💰</div>
-                <h3 class="feature-title">Token Economy</h3>
-                <p class="feature-desc">Sistem ekonomi dengan Token Cihuy untuk tukar menukar item</p>
+                <div class="feature-title">Token Economy</div>
+                <div class="feature-desc">Sistem ekonomi dengan Token Cihuy untuk tukar menukar item & gacha.</div>
             </div>
-            <div class="feature-card">
+
+            <div class="feature-card" role="listitem">
                 <div class="feature-icon">⏰</div>
-                <h3 class="feature-title">AFK Rewards</h3>
-                <p class="feature-desc">Dapatkan 2-5 token setiap 5 menit dengan sistem AFK</p>
+                <div class="feature-title">AFK Rewards</div>
+                <div class="feature-desc">Dapatkan <strong>1–2 token</strong> setiap <strong>1 menit</strong> saat AFK (perubahan terbaru).</div>
             </div>
-            <div class="feature-card">
+
+            <div class="feature-card" role="listitem">
+                <div class="feature-icon">🗺️</div>
+                <div class="feature-title">Dungeon Multiplayer</div>
+                <div class="feature-desc">Masuki dungeon co-op (3-6 pemain), kalahkan boss, kumpulkan loot tiered, dan selesaikan quest bersama.</div>
+            </div>
+
+            <div class="feature-card" role="listitem">
                 <div class="feature-icon">🌏</div>
-                <h3 class="feature-title">Singapore Server</h3>
-                <p class="feature-desc">Lokasi server di Singapore untuk ping rendah di Asia</p>
+                <div class="feature-title">Singapore Server</div>
+                <div class="feature-desc">Lokasi server di Singapore untuk ping rendah di Asia.</div>
             </div>
-            <div class="feature-card">
+
+            <div class="feature-card" role="listitem">
                 <div class="feature-icon">☕</div>
-                <h3 class="feature-title">All Java Versions</h3>
-                <p class="feature-desc">Support semua versi Minecraft Java Edition</p>
+                <div class="feature-title">All Java Versions</div>
+                <div class="feature-desc">Support semua versi Minecraft Java Edition (compatibility mode tersedia).</div>
             </div>
         </div>
     </section>
 
-    <!-- Ranks Section -->
-    <section class="ranks" id="ranks">
+    <!-- RANKS -->
+    <section id="ranks" class="ranks" aria-label="Ranks">
         <div class="ranks-container">
             <div class="section-header">
                 <h2 class="section-title">Server Ranks</h2>
-                <p class="section-subtitle">Beli Rank open ticket di discord! </p>
+                <p class="section-subtitle">Beli Rank melalui open ticket di Discord!</p>
             </div>
-            <div class="ranks-grid">
-                <div class="rank-card">
+
+            <div class="ranks-grid" role="list">
+                <div class="rank-card" role="listitem">
                     <div class="rank-header">
                         <div class="rank-name">MEDIA</div>
                         <div class="rank-price">300 Followers</div>
@@ -652,12 +340,12 @@
                     <ul class="rank-perks">
                         <li>Media Prefix & Role</li>
                         <li>2 Cihuy Key/Day</li>
-                        <li>/rankdisguise & /nick</li>
+                        <li>/rankdisguise &amp; /nick</li>
                         <li>/livestreaming Command</li>
                     </ul>
                 </div>
 
-                <div class="rank-card">
+                <div class="rank-card" role="listitem">
                     <div class="rank-header">
                         <div class="rank-name">VIP</div>
                         <div class="rank-price">Rp 10.000</div>
@@ -668,7 +356,7 @@
                     </ul>
                 </div>
 
-                <div class="rank-card">
+                <div class="rank-card" role="listitem">
                     <div class="rank-header">
                         <div class="rank-name">VIP+</div>
                         <div class="rank-price">Rp 20.000</div>
@@ -679,7 +367,7 @@
                     </ul>
                 </div>
 
-                <div class="rank-card">
+                <div class="rank-card" role="listitem">
                     <div class="rank-header">
                         <div class="rank-name">MVP</div>
                         <div class="rank-price">Rp 30.000</div>
@@ -690,7 +378,7 @@
                     </ul>
                 </div>
 
-                <div class="rank-card">
+                <div class="rank-card" role="listitem">
                     <div class="rank-header">
                         <div class="rank-name">MVP+</div>
                         <div class="rank-price">Rp 50.000</div>
@@ -702,7 +390,7 @@
                     </ul>
                 </div>
 
-                <div class="rank-card">
+                <div class="rank-card" role="listitem">
                     <div class="rank-header">
                         <div class="rank-name">MVP++</div>
                         <div class="rank-price">Rp 80.000</div>
@@ -710,11 +398,11 @@
                     <ul class="rank-perks">
                         <li>MVP++ Prefix & Role</li>
                         <li>7 Cihuy Key/Day</li>
-                        <li>/heals & /feed</li>
+                        <li>/heals &amp; /feed</li>
                     </ul>
                 </div>
 
-                <div class="rank-card rank-special">
+                <div class="rank-card rank-special" role="listitem">
                     <div class="rank-header">
                         <div class="rank-name">LEGEND</div>
                         <div class="rank-price">Rp 100.000</div>
@@ -727,7 +415,7 @@
                     </ul>
                 </div>
 
-                <div class="rank-card">
+                <div class="rank-card" role="listitem">
                     <div class="rank-header">
                         <div class="rank-name">BOOSTER</div>
                         <div class="rank-price">Discord Boost</div>
@@ -740,7 +428,7 @@
                     </ul>
                 </div>
 
-                <div class="rank-card rank-special">
+                <div class="rank-card rank-special" role="listitem">
                     <div class="rank-header">
                         <div class="rank-name">CUSTOM</div>
                         <div class="rank-price">Rp 500.000</div>
@@ -759,81 +447,202 @@
         </div>
     </section>
 
-    <!-- Community Section -->
-    <section class="features" id="community">
+    <!-- COMMUNITY -->
+    <section id="community" class="community" aria-label="Community">
         <div class="section-header">
             <h2 class="section-title">Join Komunitas</h2>
             <p class="section-subtitle">Bergabunglah dengan 300+ members di komunitas CIHUY</p>
         </div>
-        <div class="features-grid">
-            <div class="feature-card">
-                <div class="feature-icon">💬</div>
-                <h3 class="feature-title">Discord Server</h3>
-                <p class="feature-desc">Join Discord untuk update terbaru, event, dan komunitas</p>
-                <a href="https://dsc.gg/cihuyaja" target="_blank" class="btn btn-primary" style="margin-top: 20px;">Join Discord</a>
+        <div class="community-grid">
+            <div class="community-card">
+                <h3>Discord Server</h3>
+                <p>Join Discord untuk update terbaru, event, dan support.</p>
+                <a class="btn btn-primary" href="https://dsc.gg/cihuyaja" target="_blank" rel="noopener">Join Discord</a>
             </div>
-            <div class="feature-card">
-                <div class="feature-icon">🎵</div>
-                <h3 class="feature-title">TikTok</h3>
-                <p class="feature-desc">Follow TikTok kami untuk konten seru dan highlight PvP</p>
-                <a href="https://www.tiktok.com/@cihuyajahh?_r=1&_t=ZS-913HPd3p3dV" target="_blank" class="btn btn-primary" style="margin-top: 20px;">Follow TikTok</a>
+            <div class="community-card">
+                <h3>TikTok</h3>
+                <p>Follow TikTok kami untuk highlight PvP dan event menarik.</p>
+                <a class="btn btn-primary" href="https://www.tiktok.com/@cihuyajahh?_r=1&_t=ZS-913HPd3p3dV" target="_blank" rel="noopener">Follow TikTok</a>
             </div>
         </div>
     </section>
 
-    <!-- Footer -->
-    <footer>
-        <div class="footer-content">
+    <!-- FOOTER -->
+    <footer role="contentinfo">
+        <div class="footer-grid">
             <div class="footer-section">
                 <h3>CIHUY SERVER</h3>
                 <p>Server Minecraft PvP Legends terbaik di Indonesia dengan tema hutan dan gameplay yang seru.</p>
-                <div class="social-links">
-                    <a href="https://dsc.gg/cihuyaja" target="_blank" class="social-btn">💬</a>
-                    <a href="https://www.tiktok.com/@cihuyajahh?_r=1&_t=ZS-913HPd3p3dV" target="_blank" class="social-btn">🎵</a>
+                <div style="display:flex; gap:8px; margin-top:8px;">
+                    <a class="btn btn-secondary" href="https://dsc.gg/cihuyaja" target="_blank" rel="noopener">Discord</a>
+                    <a class="btn btn-secondary" href="https://www.tiktok.com/@cihuyajahh?_r=1&_t=ZS-913HPd3p3dV" target="_blank" rel="noopener">TikTok</a>
                 </div>
             </div>
+
             <div class="footer-section">
                 <h3>SERVER INFO</h3>
-                <p>IP: cihuy.xyz</p>
-                <p>Versi: All Java Versions</p>
+                <p>IP: <strong>cihuy.xyz</strong></p>
+                <p id="footerVersion">Versi: All Java Versions</p>
                 <p>Lokasi: Singapore</p>
-                <p>Online: 100+ Players</p>
+                <p id="footerOnline">Online: -- Players</p>
             </div>
+
             <div class="footer-section">
                 <h3>GAME MODES</h3>
                 <p>1v1 Duel</p>
                 <p>FFA (Free For All)</p>
                 <p>Kit PvP</p>
                 <p>Ranking System</p>
+                <p>Dungeon Multiplayer (Co-op & Raid)</p>
             </div>
+
             <div class="footer-section">
                 <h3>SUPPORT</h3>
-                <p>Pembelian: Open Ticket</p>
+                <p>Pembelian: Open Ticket (Discord)</p>
                 <p>Pertanyaan: Discord Ticket</p>
                 <p>Laporan Bug: Discord</p>
             </div>
         </div>
-        <div class="copyright">
-            © 2025 CIHUY Minecraft Server. Tempat Para Pejuang! 🌲
-        </div>
+
+        <div class="copyright">© 2025 CIHUY Minecraft Server. Tempat Para Pejuang! 🌲</div>
     </footer>
 
+    <!-- SCRIPTS -->
     <script>
-        // Navbar scroll effect
-        window.addEventListener('scroll', () => {
+        // ---------- Helper: navbar scroll ----------
+        (function(){
             const navbar = document.getElementById('navbar');
-            if (window.scrollY > 50) {
-                navbar.classList.add('scrolled');
-            } else {
-                navbar.classList.remove('scrolled');
-            }
-        });
+            window.addEventListener('scroll', () => {
+                if(window.scrollY > 48) navbar.classList.add('scrolled');
+                else navbar.classList.remove('scrolled');
+            });
+        })();
 
-        // Copy IP function
+        // ---------- Copy IP ----------
         function copyIP() {
             const ip = 'cihuy.xyz';
-            navigator.clipboard.writeText(ip).then(() => {
-                const notif = document.getElementById('copyNotif');
-                notif.classList.add('show');
-                setTimeout(() => {
-                    not
+            if(navigator.clipboard) {
+                navigator.clipboard.writeText(ip).then(() => {
+                    const n = document.getElementById('copyNotif');
+                    n.classList.add('show');
+                    setTimeout(()=> n.classList.remove('show'), 1800);
+                }).catch(()=> { alert('Salin IP gagal. Silakan salin manual: ' + ip); });
+            } else {
+                // fallback
+                const ta = document.createElement('textarea');
+                ta.value = ip;
+                document.body.appendChild(ta);
+                ta.select();
+                try { document.execCommand('copy'); alert('IP disalin: ' + ip); } catch(e) { alert('Silakan salin: ' + ip); }
+                ta.remove();
+            }
+        }
+
+        // ---------- Server status integration ----------
+        const API_URL_BASE = "https://api.mcsrvstat.us/3";
+        const SERVER_ADDRESS = "cihuy.xyz:25575"; // user provided ip+port
+
+        async function updateServerStatus() {
+            const apiUrl = `${API_URL_BASE}/${SERVER_ADDRESS}`;
+            const statusLabel = document.getElementById('statusLabel');
+            const motdEl = document.getElementById('motd');
+            const versionEl = document.getElementById('version');
+            const onlinePlayersEl = document.getElementById('onlinePlayers');
+            const playersDesc = document.getElementById('playersDesc');
+            const avgEl = document.getElementById('avgPlayers');
+            const footerOnline = document.getElementById('footerOnline');
+            const footerVersion = document.getElementById('footerVersion');
+            const cardStatus = document.getElementById('cardStatus');
+
+            // show loading state
+            statusLabel.textContent = 'Status: Memuat...';
+            motdEl.textContent = 'MOTD: Memuat...';
+            versionEl.textContent = 'Versi: -';
+            onlinePlayersEl.textContent = '--';
+            playersDesc.textContent = 'Menghubungkan ke server...';
+            avgEl.textContent = '--';
+
+            try {
+                const r = await fetch(apiUrl, { cache: "no-store" });
+                if(!r.ok) throw new Error('HTTP ' + r.status);
+                const data = await r.json();
+
+                // If API returns online true
+                if(data && data.online) {
+                    const online = (data.players && typeof data.players.online === 'number') ? data.players.online : 0;
+                    const max = (data.players && typeof data.players.max === 'number') ? data.players.max : 0;
+                    const version = data.version || (data.software ? data.software : 'Unknown');
+                    // motd may be array or object
+                    let motd = '';
+                    if(data.motd && Array.isArray(data.motd.clean)) motd = data.motd.clean.join(' ');
+                    else if(data.motd && typeof data.motd.clean === 'string') motd = data.motd.clean;
+                    else motd = 'Server aktif!';
+
+                    // update DOM
+                    statusLabel.textContent = `Status: Online 🌿`;
+                    statusLabel.className = 'status-line server-status online';
+                    motdEl.textContent = motd;
+                    versionEl.textContent = 'Versi: ' + version;
+                    onlinePlayersEl.textContent = `${online}/${max}`;
+                    playersDesc.textContent = `Players online: ${online} dari kapasitas ${max}`;
+                    avgEl.textContent = estimateAvg(online, max);
+                    footerOnline.textContent = `Online: ${online} Players`;
+                    footerVersion.textContent = `Versi: ${version}`;
+
+                    // style card as online
+                    cardStatus.classList.add('online');
+                    cardStatus.classList.remove('offline');
+                } else {
+                    // offline
+                    statusLabel.textContent = 'Status: Offline 🔴';
+                    statusLabel.className = 'status-line server-status offline';
+                    motdEl.textContent = 'Server sedang offline.';
+                    versionEl.textContent = 'Versi: -';
+                    onlinePlayersEl.textContent = '0';
+                    playersDesc.textContent = 'Server tidak merespon.';
+                    avgEl.textContent = '0';
+                    footerOnline.textContent = 'Online: 0 Players';
+
+                    cardStatus.classList.remove('online');
+                    cardStatus.classList.add('offline');
+                }
+            } catch(err) {
+                console.error('Gagal mengambil data server:', err);
+                statusLabel.textContent = 'Gagal memuat data ❌';
+                statusLabel.className = 'status-line server-status offline';
+                motdEl.textContent = 'Tidak dapat menghubungi API.';
+                versionEl.textContent = 'Versi: -';
+                onlinePlayersEl.textContent = '--';
+                playersDesc.textContent = 'Terjadi kesalahan saat mengambil data.';
+                avgEl.textContent = '--';
+                footerOnline.textContent = 'Online: -- Players';
+                cardStatus.classList.add('offline');
+            }
+        }
+
+        // simple heuristic for average players (just for display)
+        function estimateAvg(online,max) {
+            if(!max || max<=0) return '--';
+            // avg roughly between online and half of max
+            const val = Math.round((online + Math.round(max/2)) / 2);
+            return val + '+';
+        }
+
+        // initial + interval
+        updateServerStatus();
+        setInterval(updateServerStatus, 30000); // every 30s
+
+        // ---------- Optional: small improvements for accessibility ----------
+        // focus visible outline
+        document.addEventListener('keydown', (e) => {
+            if(e.key === 'Tab') document.body.classList.add('show-focus');
+        });
+
+        // ---------- Notes for AFK / Dungeon (informational only) ----------
+        // AFK reward handled server-side (plugin) — displayed here for players' info.
+        // Dungeon features are part of game server; this site advertises the feature and may link
+        // to guides or events (could add page/anchor later).
+
+    </script>
+</body>
+</html>
